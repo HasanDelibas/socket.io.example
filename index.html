@@ -12,7 +12,8 @@
         var id = socket.sesionId;
 
         socket.on("__OLAY_SUNUCUDAN__", function(data, res) {
-            console.log(data, res("iyidir"))
+            console.log(data)
+            res("iyidir")
         })
 
         data = "Sen Nasılsın?"
