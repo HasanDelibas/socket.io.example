@@ -11,13 +11,13 @@
         // ID'miz
         var id = socket.sesionId;
 
-        socket.on("__OLAY_SUNUCUDAN__", function(__DATA__, __RESPONSE__) {
-            console.log(__DATA__, __RESPONSE__("iyidir"))
+        socket.on("__OLAY_SUNUCUDAN__", function(data, res) {
+            console.log(data, res("iyidir"))
         })
 
-        __DATA__ = "Sen Nasılsın?"
-        socket.emit("__OLAY_İSTEMCİDEN__", __DATA__, function(__GELEN_CEVAP__) {
-            console.log("Gelen Cevap", __GELEN_CEVAP__)
+        data = "Sen Nasılsın?"
+        socket.emit("__OLAY_İSTEMCİDEN__", data, function(response) {
+            console.log("Gelen Cevap", response)
         })
 
 
