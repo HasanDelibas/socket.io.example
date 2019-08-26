@@ -15,14 +15,14 @@ io.on("connection", function(socket) {
     _SON_SOCKET_ID_ = socket.id;
 
     // İstemciye veri gönderme
-    socket.emit("__OLAY_SUNUCUDAN__", "__DATA__", (response) => {
+    socket.emit("__OLAY_SUNUCUDAN__", "data", (response) => {
         console.log("Gelen Cevap", response)
     })
 
     // İstemciden gelen veri
-    socket.on("__OLAY_İSTEMCİDEN__", function(__DATA__, __RESPONSE__) {
-        console.log("Gelen Veri", __DATA__)
-        __RESPONSE__("Verilen Cevap")
+    socket.on("__OLAY_İSTEMCİDEN__", function(data, response) {
+        console.log("Gelen Veri", data)
+        response("Verilen Cevap")
     })
 
 })
@@ -33,15 +33,11 @@ io.on("connection", function(socket) {
    her 5 saniyede bir çalışan timer ile gönderiyoruz.
 */
 setInterval(function() {
-    // Metod 1
-    io.sockets.connected[_SON_SOCKET_ID_].emit("__OLAY_SUNUCUDAN__", "__DATA__", (response) => {
+    if (_SON_SOCKET_ID_ == null) return
+        // Metod 1
+    io.sockets.connected[_SON_SOCKET_ID_].emit("__OLAY_SUNUCUDAN__", "data", (response) => {
         console.log("Gelen Cevap", response)
     });
-    // Metod 2
-    io.to(_SON_SOCKET_ID_)("__OLAY_SUNUCUDAN__", "__DATA__", (response) => {
-        console.log("Gelen Cevap", response)
-    })
-
 }, 5000)
 
 // Broadcast' yani HERKEZE gönderdiğimiz mesaj
