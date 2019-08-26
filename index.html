@@ -1,0 +1,27 @@
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+
+<body>
+
+</body>
+<script>
+    var socket = io.connect("localhost:3000")
+
+    socket.on("connect", function() {
+        // ID'miz
+        var id = socket.sesionId;
+
+        socket.on("__OLAY_SUNUCUDAN__", function(__DATA__, __RESPONSE__) {
+            console.log(__DATA__, __RESPONSE__("iyidir"))
+        })
+
+        __DATA__ = "Sen Nasılsın?"
+        socket.emit("__OLAY_İSTEMCİDEN__", __DATA__, function(__GELEN_CEVAP__) {
+            console.log("Gelen Cevap", __GELEN_CEVAP__)
+        })
+
+
+    })
+</script>
+
+</html>
