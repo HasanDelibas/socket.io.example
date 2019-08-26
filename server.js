@@ -20,9 +20,9 @@ io.on("connection", function(socket) {
     })
 
     // İstemciden gelen veri
-    socket.on("__OLAY_İSTEMCİDEN__", function(data, response) {
+    socket.on("__OLAY_İSTEMCİDEN__", function(data, res) {
         console.log("Gelen Veri", data)
-        response("Verilen Cevap")
+        res("Verilen Cevap")
     })
 
 })
